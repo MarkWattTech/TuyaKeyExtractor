@@ -2,7 +2,7 @@
   <br>
   <a href="https://youtu.be/F00_4jDk06g"><img src="https://github.com/MarkWattTech/TuyaKeyExtractor/blob/main/img/6.png" alt="MarkWattTech" width="200"></a>
   <br>
-  Markdownify
+  Mark Watt Tech - TuyaKeyExtractor
   <br>
 </h1>	  
 	  
