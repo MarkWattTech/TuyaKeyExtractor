@@ -32,7 +32,7 @@ namespace TuyaKeyExtractor
         public void MenuEntry(string menutext, List<string> menuOptions, int menuToDisplay)
         {
             ClearConsole();
-            Console.Title = $"Mark Watt Tech - Tuya Key Extractor (v0.01)";
+            Console.Title = $"Mark Watt Tech - Tuya Key Extractor (v0.02)";
             Print.DisplayMenu(menuToDisplay);
             if (string.IsNullOrEmpty(menutext))
             {
@@ -166,11 +166,11 @@ namespace TuyaKeyExtractor
                         break;
                         // Video related to the tool
                     case "V":
-                        UrlOpener("#");
+                        UrlOpener("https://youtu.be/YKvGYXw-_cE");
                         break;
                         // How to use the tool
                     case "H":
-                        UrlOpener("#");
+                        UrlOpener("https://youtu.be/F00_4jDk06g");
                         break;
 
 
