@@ -1,7 +1,7 @@
 
 <h1 align="center">
   <br>
-  <a href="https://youtu.be/F00_4jDk06g"><img src="https://github.com/MarkWattTech/TuyaKeyExtractor/blob/main/img/6.png alt="Markdownify" width="200"></a>
+  <a href="https://youtu.be/F00_4jDk06g"><img src="https://github.com/MarkWattTech/TuyaKeyExtractor/blob/main/img/6.png></a>
   <br>
   Mark Watt Tech - Tuya Key Extractor
   <br>
@@ -10,16 +10,14 @@
 <h4 align="center">A very basic C# Console App to parse a specific preference.xml file used in my Local Tuya <a href="https://youtu.be/YKvGYXw-_cE" target="_blank">Tutorial</a>.</h4>
 
 <p align="center">
-  <a href="https://github.com/login?return_to=%2FMarkWattTech">
-    <img src="github/followers/:MarkWattTech?label=Follow"
-         alt="GitHub">
+
   </a>
   <a href="https://www.buymeacoffee.com/MarkWattTech><img src="https://github.com/MarkWattTech/TuyaKeyExtractor/blob/main/img/coffee.png"></a>
 
 </p>
 
 <p align="center">
-  <a href="#key-features">Key Features</a> •
+  <a href="#about-the-tool">About The Tool</a> •
   <a href="#how-to-use">How To Use</a> •
   <a href="#socials">Socials</a> •
 
@@ -27,7 +25,7 @@
 
 ![screenshot](https://github.com/MarkWattTech/TuyaKeyExtractor/blob/main/img/MWT.gif)
 
-## Key Features
+## About The Tool
 
 * Simple Console app to make reading your keys easier  
 * Small file that can be deleted after
@@ -42,17 +40,13 @@ I have created a short video running through tis simple tool. You can check it o
 the full video for actually getting the file you need to use with this tool can be found [here](https://youtu.be/YKvGYXw-_cE) .
 
 
-# Step 1
-Obtain the preference file from an old version of the Smart Life App (3.6.1).
+1. Obtain the preference file from an old version of the Smart Life App (3.6.1).
 
-# Step 2
-Run the tool and set the Path to the file. This needs to be the full path (including filename and extension)
+2. Run the tool and set the Path to the file. This needs to be the full path (including filename and extension)
 
-# Step 3
-Use options 2,3 and 4 to get the data you want
+3. Use options 2, 3 and 4 to get the data you want
 
-# Step 5
-Subscribe to my YouTube channel if you aren't allready!
+4. Subscribe to my YouTube channel if you aren't allready!
 
 
 ## Socials
