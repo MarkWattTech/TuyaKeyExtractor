@@ -21,6 +21,7 @@
 <p align="center">
   <a href="#about-the-tool">About The Tool</a> •
   <a href="#how-to-use">How To Use</a> •
+  <a href="#download">Download</a> •
   <a href="#socials">Socials</a> •
 
 </p>
@@ -50,6 +51,11 @@ the full video for actually getting the file you need to use with this tool can 
 
 4. Subscribe to my YouTube channel if you aren't allready!
 
+If you have any suggestions / feedback, or maybe theres something you would like to see added. Then feel free to get in touch or make a pull request. I put this tool together really quickly so there are still bits missing like error handling etc. Enjoy!
+
+## Download
+
+You can [download](https://github.com/MarkWattTech/TuyaKeyExtractor/raw/main/MWT%20TuyaKeyExtractor.zip) the latest version of my TuyaKeyExtractor console app here.
 
 ## Socials
 
