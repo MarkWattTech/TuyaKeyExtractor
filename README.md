@@ -1,11 +1,13 @@
-
-<h1 align="center">
+ <h1 align="center">
   <br>
-  <a href="https://youtu.be/F00_4jDk06g"><img src="https://github.com/MarkWattTech/TuyaKeyExtractor/blob/main/img/6.png></a>
+  <a href="https://youtu.be/F00_4jDk06g"><img src="https://github.com/MarkWattTech/TuyaKeyExtractor/blob/main/img/6.png" alt="MarkWattTech" width="200"></a>
   <br>
-  Mark Watt Tech - Tuya Key Extractor
+  Markdownify
   <br>
-</h1>
+</h1>	  
+	  
+	  
+	  
 <h4 align="center">A very basic C# Console App to parse a specific preference.xml file used in my Local Tuya <a href="https://youtu.be/YKvGYXw-_cE" target="_blank">Tutorial</a>.</h4>
 
 
