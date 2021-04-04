@@ -23,6 +23,7 @@
   <a href="#how-to-use">How To Use</a> •
   <a href="#download">Download</a> •
   <a href="#socials">Socials</a> •
+  <a href="#issues">Issues</a> •
 
 </p>
 
@@ -45,17 +46,24 @@ the full video for actually getting the file you need to use with this tool can 
 
 1. Obtain the preference file from an old version of the Smart Life App (3.6.1).
 
-2. Run the tool and set the Path to the file. This needs to be the full path (including filename and extension)
+2. Install .net Core Runtime (If you haven't allredy). It's required to run the App.
 
-3. Use options 2, 3 and 4 to get the data you want
+3. Run the tool and set the Path to the file. This needs to be the full path (including filename and extension)
 
-4. Subscribe to my YouTube channel if you aren't allready!
+4. Use options 2, 3 and 4 to get the data you want
+
+5. Subscribe to my YouTube channel if you aren't allready!
 
 If you have any suggestions / feedback, or maybe theres something you would like to see added. Then feel free to get in touch or make a pull request. I put this tool together really quickly so there are still bits missing like error handling etc. Enjoy!
 
 ## Download
 
 You can [download](https://github.com/MarkWattTech/TuyaKeyExtractor/raw/main/MWT%20TuyaKeyExtractor.zip) the latest version of my TuyaKeyExtractor console app here.
+
+.net Core Runtime
+Windows 64 bit - [download](https://dotnet.microsoft.com/download/dotnet/thank-you/runtime-3.1.13-windows-x64-installer)
+Windows 32 bit - [download](https://dotnet.microsoft.com/download/dotnet/thank-you/runtime-desktop-3.1.13-windows-x86-installer)
+.net Core Webpage [open](https://dotnet.microsoft.com/download/dotnet/3.1)
 
 ## Socials
 
@@ -66,7 +74,6 @@ Catch me on my Social Media Pages below:
 - [Twitter](https://twitter.com/MarkWattTech)
 - [Instagram](https://www.instagram.com/MarkWattTech/)
 - [Reddit](https://www.reddit.com/r/MarkWattTech/)
-
 
 
 ## Support
@@ -81,3 +88,7 @@ Want to help me out? While donations aren't required, they are greatly appreciat
 	<img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
 </a>
 
+## Issues
+
+Cant Open the App - It opens then instantly closes!
+Make sure you have the .net core runtime installed otherwise you will experience this.
