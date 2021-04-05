@@ -1,6 +1,7 @@
 ﻿using ConsoleTables;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Xml;
 
@@ -29,6 +30,7 @@ namespace TuyaKeyExtractor
             string[] words = s.Split(delimiterChars);
 
             List<ExtractedKey> keys = new List<ExtractedKey>();
+            List<ExtractedKey> cleanList = new List<ExtractedKey>();
 
             int i = 0;
             ExtractedKey key = new ExtractedKey();
@@ -105,6 +107,57 @@ namespace TuyaKeyExtractor
                         Console.WriteLine("");
                         break;
                     }
+                }
+            }
+
+            // Generate .CSV List
+            if (option == 4)
+            {
+                CleanList(keys, cleanList);
+             
+                try
+                {
+                    File.WriteAllLines("Tuya Local Keys.csv", cleanList.Select(x => string.Join(",", x.DeviceName, x.DeviceID, x.LocalKey)));
+                    Console.WriteLine("Successfully Generated Tuya Local Keys.csv");
+                }
+                catch(System.IO.IOException ie)
+                {
+                    Console.WriteLine("ERROR - Can't update the File as it is in use. Have you got it open?\n\n" + ie.Message);
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+
+            // Generate .txt 
+            if (option == 5)
+            {
+                CleanList(keys, cleanList);
+
+                try
+                {
+                    File.WriteAllLines("Tuya Local Keys.txt", cleanList.Select(x => string.Join(",", x.DeviceName, x.DeviceID, x.LocalKey)));
+                    Console.WriteLine("Successfully Generated Tuya Local Keys.txt");
+                }
+                catch (System.IO.IOException ie)
+                {
+                    Console.WriteLine("ERROR - Can't update the File as it is in use. Have you got it open?\n\n" + ie.Message);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+        }
+
+        public void CleanList(List<ExtractedKey> inputList, List<ExtractedKey> outputList)
+        {
+            foreach (ExtractedKey k in inputList)
+            {
+                if (k.DeviceID != null && k.DeviceName != null && k.LocalKey != null)
+                {
+                    outputList.Add(new ExtractedKey(k.DeviceName, k.LocalKey, k.DeviceID));
                 }
             }
         }

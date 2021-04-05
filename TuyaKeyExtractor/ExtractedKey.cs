@@ -13,6 +13,18 @@ namespace TuyaKeyExtractor
     /// 
     public class ExtractedKey
     {
+        public ExtractedKey()
+        {
+
+        }
+
+        public ExtractedKey(string deviceName, string localKey, string deviceId)
+        {
+            this.DeviceName = deviceName;
+            this.LocalKey = localKey;
+            this.DeviceID = deviceId;
+        }
+
         /// <summary>
         /// The name of the Device as listed in the Smart Life App.
         /// </summary>

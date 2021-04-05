@@ -32,7 +32,7 @@ namespace TuyaKeyExtractor
         public void MenuEntry(string menutext, List<string> menuOptions, int menuToDisplay)
         {
             ClearConsole();
-            Console.Title = $"Mark Watt Tech - Tuya Key Extractor (v0.02)";
+            Console.Title = $"Mark Watt Tech - Tuya Key Extractor (v0.03)";
             Print.DisplayMenu(menuToDisplay);
             if (string.IsNullOrEmpty(menutext))
             {
@@ -68,7 +68,8 @@ namespace TuyaKeyExtractor
 
                     case "1":
                         Console.WriteLine("Enter the file path for the Preference.xml file   (e.g. C:\\Users\\MarkWattTech\\Desktop\\Preference.xml)");
-                        Print.configFilePath = Console.ReadLine();
+                        string readIn = Console.ReadLine();
+                        Print.configFilePath = readIn.Replace("\"", string.Empty).Replace("'", string.Empty);
 
                         if (Print.configFilePath == "" || Print.configFilePath == null)
                         {
@@ -136,7 +137,32 @@ namespace TuyaKeyExtractor
 
                         break;
 
-                        // Subscribe to Mark Watt Tech
+                        // Generate .CSV File
+                    case "5":
+                        if (Print.pathSet == false)
+                        {
+                            pathError();
+                        }
+                        else
+                        {
+                            extract.ReadXml(Print.configFilePath, 4);
+                        }
+                        break;
+
+                        // Generate .TXT file
+                    case "6":
+                        if (Print.pathSet == false)
+                        {
+                            pathError();
+                        }
+                        else
+                        {
+                            extract.ReadXml(Print.configFilePath, 5);
+                        }
+                        break;
+
+
+                    // Subscribe to Mark Watt Tech
                     case "S":
                         UrlOpener("http://www.youtube.com/channel/UCQRm_z7seHnGsBiWDNEWr6A?sub_confirmation=1");
                         break;
@@ -148,7 +174,11 @@ namespace TuyaKeyExtractor
                     case "F":
                         UrlOpener("https://www.facebook.com/MarkWattTech");
                         break;
-                        // Reddit
+                        // Facebook Group
+                    case "FF":
+                        UrlOpener("hhttps://www.facebook.com/groups/2963936147172102/");
+                        break;
+                    // Reddit
                     case "R":
                         UrlOpener("https://www.reddit.com/r/MarkWattTech/");
                         break;
@@ -177,6 +207,10 @@ namespace TuyaKeyExtractor
                     case "Q":
                         Console.WriteLine("Thanks for checking out the tool!");
                         System.Environment.Exit(0);
+                        break;
+
+                    case "T":
+                        extract.ReadXml(Print.configFilePath, 4);
                         break;
 
                     default:

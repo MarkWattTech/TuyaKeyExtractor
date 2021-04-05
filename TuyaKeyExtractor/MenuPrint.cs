@@ -32,6 +32,8 @@ namespace TuyaKeyExtractor
             MenuOptions.Add( "  2   -   Print All Keys             | ");
             MenuOptions.Add( "  3   -   Print All Keys Fancy       | ");
             MenuOptions.Add( "  4   -   Print Key by ID            | ");
+            MenuOptions.Add( "  5   -   Generate .CSV              | ");
+            MenuOptions.Add( "  6   -   Generate .TXT              | ");
             MenuOptions.Add( "  E   -   Extras                     | ");
             MenuOptions.Add( "  S   -   SUBSCRIBE TO MarkWattTech  | ");
             MenuOptions.Add( "  Q   -   Quit                       |");
@@ -55,6 +57,7 @@ namespace TuyaKeyExtractor
             AllCommands.Add("  Links for all My Socials           |");
             AllCommands.Add("  I   -   Instagram                  | ");
             AllCommands.Add("  F   -   Facebook                   | ");
+            AllCommands.Add("  FF   -   Facebook Group            | ");
             AllCommands.Add("  R   -   Reddit                     | ");
             AllCommands.Add("  G   -   GitHub for this Tool       | ");
             AllCommands.Add("                                     | ");
