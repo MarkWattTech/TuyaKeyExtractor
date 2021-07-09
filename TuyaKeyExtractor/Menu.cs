@@ -57,7 +57,7 @@ namespace TuyaKeyExtractor
 				switch ( input.ToUpper () )
 				{
 				case "A":
-					aboutTool ();
+					AboutTool ();
 					break;
 
 				case "E":
@@ -85,7 +85,7 @@ namespace TuyaKeyExtractor
 					}
 					else
 					{
-						pathError ();
+						ShowPathError ();
 					}
 					break;
 
@@ -97,7 +97,7 @@ namespace TuyaKeyExtractor
 					}
 					else
 					{
-						pathError ();
+						ShowPathError ();
 					}
 					break;
 
@@ -119,7 +119,7 @@ namespace TuyaKeyExtractor
 					}
 					else
 					{
-						pathError ();
+						ShowPathError ();
 					}
 					break;
 
@@ -131,7 +131,7 @@ namespace TuyaKeyExtractor
 					}
 					else
 					{
-						pathError ();
+						ShowPathError ();
 					}
 					break;
 
@@ -143,7 +143,7 @@ namespace TuyaKeyExtractor
 					}
 					else
 					{
-						pathError ();
+						ShowPathError ();
 					}
 					break;
 
@@ -213,7 +213,7 @@ namespace TuyaKeyExtractor
 			MenuEntry ( null, _print.MenuOptions, 1 );
 		}
 
-		private void aboutTool ()
+		private void AboutTool ()
 		{
 			Console.WriteLine ( "\n===================================================================================================" );
 			Console.WriteLine ( "I (Mark Watt) created this tool as a simple way for me to read my local keys from my\n" +
@@ -229,7 +229,7 @@ namespace TuyaKeyExtractor
 			Console.WriteLine ( "===================================================================================================\n" );
 		}
 
-		private void pathError ()
+		private void ShowPathError ()
 		{
 			Console.WriteLine ( "ERROR - You need to specify the filepath for the preference.xml file first." );
 		}
