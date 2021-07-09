@@ -29,7 +29,7 @@ namespace TuyaKeyExtractor
 		public void MenuEntry ( string menutext, List<string> menuOptions, int menuToDisplay )
 		{
 			ClearConsole ();
-			Console.Title = $"Mark Watt Tech - Tuya Key Extractor (v0.04)";
+			Console.Title = $"Mark Watt Tech - Tuya Key Extractor (v0.05)";
 
 			_print.DisplayMenu ( menuToDisplay );
 			if ( string.IsNullOrEmpty ( menutext ) )
