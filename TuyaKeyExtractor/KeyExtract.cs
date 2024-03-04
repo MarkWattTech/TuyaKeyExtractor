@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml;
+using System.Text.RegularExpressions;
+using System.Web;
 
 namespace TuyaKeyExtractor
 {
@@ -14,64 +16,37 @@ namespace TuyaKeyExtractor
 	public class KeyExtract
 	{
 		//   public string search;
-		static readonly char[] delimiterChars = new[] { ',', '.', ':' };
+		static readonly char[] delimiterChars = new[] { ',', '.', ':', '?', '$', '[', '=', '*' };
 
-		/// <summary>
-		/// Parse the given data file and extract keys from it.
-		/// </summary>
-		/// <param name="path"> The path to the XML file</param>
-		/// <returns></returns>
-		private IList<ExtractedKey> ParseXmlFile ( string path )
+		public IList<ExtractedKey> ParseXmlFile(string path)
 		{
-			XmlDocument xmlDoc = new XmlDocument ();
-			try
-			{
-				xmlDoc.Load ( path );
-				var s = xmlDoc.InnerText;
+		    try
+		    {
+		        XmlDocument xmlDoc = new XmlDocument();
+		        xmlDoc.Load(path);
+		        var xmlText = xmlDoc.InnerXml;
 
-				string[] words = s.Split ( delimiterChars );
+		        var localKeyMatches = Regex.Matches(xmlText, "\"localKey\"\\s*:\\s*\"([^\"]+)\"");
+		        var devIdMatches = Regex.Matches(xmlText, "\"devId\"\\s*:\\s*\"([^\"]+)\"");
+		        var nameMatches = Regex.Matches(xmlText, "\"name\"\\s*:\\s*\"([^\"]+)\"");
 
-				var keys = new List<ExtractedKey> ();
-				//			var cleanList = new List<ExtractedKey> ();
+		        var keys = new List<ExtractedKey>();
+		        for (int i = 0; i < localKeyMatches.Count; i++)
+		        {
+		            var localKey = HttpUtility.HtmlDecode(localKeyMatches[i].Groups[1].Value);
+		            var devId = HttpUtility.HtmlDecode(devIdMatches[i].Groups[1].Value);
+		            var name = HttpUtility.HtmlDecode(nameMatches[i].Groups[1].Value);
 
-				int i = 0;
-				ExtractedKey key = new ExtractedKey ();
-				foreach ( var word in words )
-				{
-					i++;
+		            keys.Add(new ExtractedKey { LocalKey = localKey, DeviceID = devId, DeviceName = name });
+		        }
 
-					if ( word == "\"localKey\"" )
-					{
-						var replace = words[i].Replace ( "\"", "" );
-						key.LocalKey = replace;
-					}
-
-					if ( word == "\"devId\"" )
-					{
-						var replace = words[i].Replace ( "\"", "" );
-						key.DeviceID = replace;
-					}
-
-					if ( word == "\"name\"" )
-					{
-						var replace = words[i].Replace ( "\"", "" );
-						key.DeviceName = replace;
-
-						if ( key.LocalKey != null && key.DeviceName != null )
-						{
-							keys.Add ( key );
-							key = new ExtractedKey ();
-						}
-					}
-				}
-
-				return keys;
-			}
-			catch ( System.IO.FileNotFoundException )
-			{
-				Console.WriteLine ( $"ERROR - It looks like your entered Path: \"{path}\" isn't valid. Try setting it again.\n\n" );
-			}
-			return null;
+		        return keys;
+		    }
+		    catch (FileNotFoundException)
+		    {
+		        Console.WriteLine($"ERROR - It looks like your entered Path: \"{path}\" isn't valid. Try setting it again.\n\n");
+		    }
+		    return null;
 		}
 
 		/// <summary>
