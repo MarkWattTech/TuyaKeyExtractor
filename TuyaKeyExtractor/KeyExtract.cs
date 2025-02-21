@@ -16,8 +16,6 @@ namespace TuyaKeyExtractor
 	/// </summary>
 	public class KeyExtract
 	{
-		//   public string search;
-		static readonly char[] delimiterChars = new[] { ',', '.', ':' };
 
 		/// <summary>
 		/// Parse the given data file and extract keys from it.
@@ -43,8 +41,11 @@ namespace TuyaKeyExtractor
 				
 				// parse the 'string' subnodes of the parent node
 				foreach ( XmlNode node in map[0].ChildNodes) {
-					var attr = node.Attributes["name"];
+
+					// Make a description of the node for error messages.
 					string description = null;
+
+					var attr = node.Attributes["name"];
 					if ( attr != null ){
 						description=$"Node {node.Name} \"{attr.Value}\"";
 					} else {
