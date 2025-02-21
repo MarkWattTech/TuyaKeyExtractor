@@ -1,9 +1,12 @@
 ﻿using ConsoleTables;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Web;
 using System.Xml;
+using Newtonsoft.Json;
 
 namespace TuyaKeyExtractor
 {
@@ -24,47 +27,87 @@ namespace TuyaKeyExtractor
 		private IList<ExtractedKey> ParseXmlFile ( string path )
 		{
 			XmlDocument xmlDoc = new XmlDocument ();
+
 			try
 			{
 				xmlDoc.Load ( path );
-				var s = xmlDoc.InnerText;
-
-				string[] words = s.Split ( delimiterChars );
-
 				var keys = new List<ExtractedKey> ();
-				//			var cleanList = new List<ExtractedKey> ();
 
-				int i = 0;
-				ExtractedKey key = new ExtractedKey ();
-				foreach ( var word in words )
-				{
-					i++;
-
-					if ( word == "\"localKey\"" )
-					{
-						var replace = words[i].Replace ( "\"", "" );
-						key.LocalKey = replace;
+				// this file looks like:
+				// <?xml stuff>
+				// <map>
+				//  <otherstuff>
+				//  <string ...> possibly irrelevant </string>
+				//  <string ...> HTML-encoded JSON (relevant) </string>
+				var map = xmlDoc.GetElementsByTagName ( "map" );
+				
+				// parse the 'string' subnodes of the parent node
+				foreach ( XmlNode node in map[0].ChildNodes) {
+					var attr = node.Attributes["name"];
+					string description = null;
+					if ( attr != null ){
+						description=$"Node {node.Name} \"{attr.Value}\"";
+					} else {
+						description=$"Node {node.Name} (no name attribute)";
 					}
 
-					if ( word == "\"devId\"" )
-					{
-						var replace = words[i].Replace ( "\"", "" );
-						key.DeviceID = replace;
+					if (node.Name != "string") {
+						// several nodes, but we only care about the "string" nodes.
+						// Console.WriteLine( $"{description} is not a string.  Skipped");
+						continue;
+					}
+					// otherwise...
+					// the string inside appears to be HTML-encoded JSON.
+
+					string innertext = node.InnerText;
+					
+					try {
+						innertext = HttpUtility.HtmlDecode( node.InnerText);
+					} catch (Exception) {
+						// is this even possible?
+						Console.WriteLine( $"Invalid HTML at {description}.  Using it anyway." );
 					}
 
-					if ( word == "\"name\"" )
-					{
-						var replace = words[i].Replace ( "\"", "" );
-						key.DeviceName = replace;
+					dynamic j;
+					try {
+						j = JsonConvert.DeserializeObject<dynamic>(innertext);
+					} catch( Exception ) {
+						// there are other "string" nodes that aren't relevant to us,
+						// and which are not JSON.  Skip those.
+						// this seems pretty expected, so don't emit an error.
+						// Console.WriteLine( $"Invalid JSON at {node.Name}.  Skipped.");
+						continue;
+					}
 
-						if ( key.LocalKey != null && key.DeviceName != null )
-						{
-							keys.Add ( key );
-							key = new ExtractedKey ();
+					// otherwise, the interior should look like:
+					// {
+					//  "deviceRespBeen": [
+					//     { "localKey": "key", "devId": "id", "name": "name", ... },
+					//     { "localKey": "key", "devId": "id", "name": "name", ... },
+					//    ...
+					//   ]
+
+					try {
+						var devices = j["deviceRespBeen"];
+						foreach (var device in devices) {
+							var key = new ExtractedKey();
+							key.LocalKey = device["localKey"];
+							key.DeviceID = device["devId"];
+							key.DeviceName = device["name"];
+							// Console.WriteLine( $"Found key in {description} for {key.DeviceName} ({key.DeviceID})");
+							keys.Add( key );
 						}
+					} catch (Exception) {
+						// if "name" is not an attribute, it'll return null, which is fine.
+						// There are objects in the JSON with different structures (or none),
+						// so just skip it.
+						// Console.WriteLine( $"Bad JSON structure at {description}.  Skipped.");
+						continue;
 					}
-				}
 
+
+				}
+				
 				return keys;
 			}
 			catch ( System.IO.FileNotFoundException )
