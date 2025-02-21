@@ -236,7 +236,11 @@ namespace TuyaKeyExtractor
 
 		public void ClearConsole ()
 		{
-			Console.Clear ();
+			try {
+				Console.Clear ();
+			} catch ( Exception e ) {
+				Console.WriteLine ( "Failed to clear console - " + e.Message );
+			}
 		}
 
 		public void UrlOpener ( string url )
